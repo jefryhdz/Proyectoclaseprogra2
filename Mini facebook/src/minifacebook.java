@@ -44,9 +44,13 @@ public class minifacebook extends javax.swing.JFrame {
         initComponents();
         Image img = Toolkit.getDefaultToolkit().createImage("./default.jpeg").getScaledInstance(100, 100, 0);
         lb_foto.setIcon(new ImageIcon(img));
+        lb_foto2.setIcon(new ImageIcon(img));
         dt_fecha.setDate(new Date());
+        dt_fecha2.setDate(new Date());
+        dt_fecha3.setDate(new Date());
         this.setLocationRelativeTo(null);
         cargarrarchivo();
+        cargarradmin();
     }
 
     /**
@@ -73,6 +77,9 @@ public class minifacebook extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        amdi = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jif_enviar = new javax.swing.JInternalFrame();
         jp_enviar = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -108,6 +115,42 @@ public class minifacebook extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jsc_muro = new javax.swing.JScrollPane();
         jp_post = new javax.swing.JPanel();
+        crear = new javax.swing.JDialog();
+        pf_contra2 = new javax.swing.JPasswordField();
+        tf_nombre2 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        lb_foto2 = new javax.swing.JLabel();
+        tf_nick2 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        cb_pais2 = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        dt_fecha2 = new com.toedter.calendar.JDateChooser();
+        jButton13 = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        modificar = new javax.swing.JDialog();
+        tf_nick3 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
+        cb_pais3 = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        dt_fecha3 = new com.toedter.calendar.JDateChooser();
+        jButton15 = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        pf_contra3 = new javax.swing.JPasswordField();
+        tf_nombre3 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        lb_foto3 = new javax.swing.JLabel();
+        cb_modificar = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -138,7 +181,7 @@ public class minifacebook extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 356, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Inicio");
@@ -224,6 +267,27 @@ public class minifacebook extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
+
+        amdi.setText("Administrador");
+        amdi.setEnabled(false);
+
+        jMenuItem10.setText("Crear administrador");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        amdi.add(jMenuItem10);
+
+        jMenuItem11.setText("Modificar");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        amdi.add(jMenuItem11);
+
+        jMenuBar1.add(amdi);
 
         jd_inicio.setJMenuBar(jMenuBar1);
 
@@ -327,9 +391,16 @@ public class minifacebook extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane3.setViewportView(jt_ver);
@@ -584,6 +655,321 @@ public class minifacebook extends javax.swing.JFrame {
 
         jsc_muro.setViewportView(jp_post);
 
+        pf_contra2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pf_contra2ActionPerformed(evt);
+            }
+        });
+
+        tf_nombre2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nombre2ActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Imagen de perfil");
+
+        jLabel23.setText("Nickname");
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Contraseña");
+
+        jButton12.setText("Seleccionar");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        cb_pais2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Honduras", "Estados Unidos", "Mexico", "Canada", "Rusia", "Argentina", "Brasil", "Nicaragua", "El Salvador", "Costa Rica" }));
+
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Pais");
+
+        jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Creacion de usuario");
+
+        jLabel27.setText("Fecha de nacimiento");
+
+        jButton13.setText("Crear");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setText("Nombre completo");
+
+        javax.swing.GroupLayout crearLayout = new javax.swing.GroupLayout(crear.getContentPane());
+        crear.getContentPane().setLayout(crearLayout);
+        crearLayout.setHorizontalGroup(
+            crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel22)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearLayout.createSequentialGroup()
+                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearLayout.createSequentialGroup()
+                                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearLayout.createSequentialGroup()
+                                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(30, 30, 30))
+                                    .addGroup(crearLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)))
+                                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pf_contra2)
+                                    .addComponent(tf_nombre2)
+                                    .addComponent(tf_nick2)
+                                    .addGroup(crearLayout.createSequentialGroup()
+                                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton13)
+                                            .addComponent(cb_pais2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(crearLayout.createSequentialGroup()
+                                        .addComponent(dt_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton12))))
+                            .addComponent(jLabel27))
+                        .addGap(18, 18, 18)
+                        .addComponent(lb_foto2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        crearLayout.setVerticalGroup(
+            crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crearLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(tf_nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(tf_nick2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pf_contra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(7, 7, 7)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearLayout.createSequentialGroup()
+                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cb_pais2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
+                        .addGap(21, 21, 21)
+                        .addGroup(crearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel27)
+                            .addComponent(dt_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton13))
+                    .addGroup(crearLayout.createSequentialGroup()
+                        .addComponent(lb_foto2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(19, 19, 19))
+        );
+
+        tf_nick3.setEnabled(false);
+
+        jLabel29.setText("Nickname");
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("Contraseña");
+
+        jButton14.setText("Seleccionar");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        cb_pais3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Honduras", "Estados Unidos", "Mexico", "Canada", "Rusia", "Argentina", "Brasil", "Nicaragua", "El Salvador", "Costa Rica" }));
+
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Pais");
+
+        jLabel32.setText("Fecha de nacimiento");
+
+        jButton15.setText("Modificar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setText("Nombre completo");
+
+        pf_contra3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pf_contra3ActionPerformed(evt);
+            }
+        });
+
+        tf_nombre3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nombre3ActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setText("Imagen de perfil");
+
+        cb_modificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_modificarItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar.getContentPane());
+        modificar.getContentPane().setLayout(modificarLayout);
+        modificarLayout.setHorizontalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarLayout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(cb_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modificarLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel34)
+                            .addGap(23, 23, 23))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarLayout.createSequentialGroup()
+                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarLayout.createSequentialGroup()
+                                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarLayout.createSequentialGroup()
+                                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30))
+                                        .addGroup(modificarLayout.createSequentialGroup()
+                                            .addGap(20, 20, 20)
+                                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pf_contra3)
+                                        .addComponent(tf_nombre3)
+                                        .addComponent(tf_nick3)
+                                        .addGroup(modificarLayout.createSequentialGroup()
+                                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jButton15)
+                                                .addComponent(cb_pais3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(modificarLayout.createSequentialGroup()
+                                            .addComponent(dt_fecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton14))))
+                                .addComponent(jLabel32))
+                            .addGap(18, 18, 18)
+                            .addComponent(lb_foto3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap()))
+        );
+        modificarLayout.setVerticalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cb_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
+            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modificarLayout.createSequentialGroup()
+                    .addGap(34, 34, 34)
+                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel33)
+                        .addComponent(tf_nombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel29)
+                        .addComponent(tf_nick3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pf_contra3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel30))
+                    .addGap(7, 7, 7)
+                    .addComponent(jLabel34)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(modificarLayout.createSequentialGroup()
+                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cb_pais3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel31))
+                            .addGap(21, 21, 21)
+                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel32)
+                                .addComponent(dt_fecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton14))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton15))
+                        .addComponent(lb_foto3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(35, 35, 35)))
+        );
+
+        jLabel15.setText("Organizador de eventos");
+
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.MINUTE));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -766,14 +1152,15 @@ public class minifacebook extends javax.swing.JFrame {
         try {
             String nickname = tf_usuario.getText();
             String contra = pf_login.getText();
-            System.out.println(lista);
+            System.out.println(lista + "#");
+            System.out.println(admin + "#");
+            System.out.println(global + "#");
             for (Usuario us : lista) {
                 if (us.getNickname().equals(nickname) && us.getPassword().equals(contra)) {
                     JOptionPane.showMessageDialog(this, "Ingreso con exito");
-                    DefaultComboBoxModel model = new DefaultComboBoxModel(lista.toArray());
+                    DefaultComboBoxModel model = new DefaultComboBoxModel(global.toArray());
                     cb_enviarmensaje.setModel(model);
                     use = us;
-                    setUse(us);
                     System.out.println(us.getSolicitudes());
                     System.out.println(use.getMuro().size());
                     tf_usuario.setText("");
@@ -783,8 +1170,28 @@ public class minifacebook extends javax.swing.JFrame {
                     jd_inicio.setModal(true);
                     jd_inicio.pack();
                     jd_inicio.setLocationRelativeTo(this);
-                    jd_inicio.setSize(500, 500);
                     jd_inicio.setVisible(true);
+                }
+            }
+            if (!ingreso) {
+                for (Usuario us : admin) {
+                    if (us.getNickname().equals(nickname) && us.getPassword().equals(contra)) {
+                        JOptionPane.showMessageDialog(this, "Ingreso con exito");
+                        DefaultComboBoxModel model = new DefaultComboBoxModel(global.toArray());
+                        cb_enviarmensaje.setModel(model);
+                        use = us;
+                        amdi.setEnabled(true);
+                        System.out.println(us.getSolicitudes());
+                        System.out.println(use.getMuro().size());
+                        tf_usuario.setText("");
+                        pf_login.setText("");
+                        ingreso = true;
+                        this.dispose();
+                        jd_inicio.setModal(true);
+                        jd_inicio.pack();
+                        jd_inicio.setLocationRelativeTo(this);
+                        jd_inicio.setVisible(true);
+                    }
                 }
             }
             if (!ingreso) {
@@ -794,7 +1201,7 @@ public class minifacebook extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -871,7 +1278,7 @@ public class minifacebook extends javax.swing.JFrame {
             jd_inicio.repaint();
             jif_enviar.setVisible(true);
         } catch (Exception e) {
-            
+
         }
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -882,15 +1289,13 @@ public class minifacebook extends javax.swing.JFrame {
             String mensaje = ta_mensajeenviar.getText();
             Mensaje m = new Mensaje(use.getNickname(), us.getNickname(), mensaje);
             ta_mensajeenviar.setText("");
-            for (Usuario u : lista) {
+            for (Usuario u : global) {
                 if (u == us || u == use) {
                     u.getMensajes().add(m);
                 }
             }
-            for (Usuario usex : lista) {
-                agregar_archivo(usex);
-            }
-            
+            agregar_archivo(us);
+            agregar_admin(us);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -902,9 +1307,9 @@ public class minifacebook extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_vermensajesActionPerformed
 
     private void cb_vermensajesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_vermensajesItemStateChanged
-        
+
         if (evt.getStateChange() == 1) {
-            
+
             DefaultTableModel mod = (DefaultTableModel) jt_ver.getModel();
             String emisor = cb_vermensajes.getSelectedItem().toString();
             for (Mensaje me : use.getMensajes()) {
@@ -915,14 +1320,14 @@ public class minifacebook extends javax.swing.JFrame {
             }
             jt_ver.setModel(mod);
             jd_inicio.repaint();
-            
+
         } else {
             DefaultTableModel modeo = (DefaultTableModel) jt_ver.getModel();
             for (int i = 0; i < modeo.getRowCount(); i++) {
                 modeo.removeRow(i);
                 i -= 1;
             }
-            
+
         }
 
     }//GEN-LAST:event_cb_vermensajesItemStateChanged
@@ -932,13 +1337,13 @@ public class minifacebook extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
+
         if (use.getSolicitudes().size() > 0) {
             try {
                 DefaultTableModel model = (DefaultTableModel) jt_solicitudes.getModel();
                 for (Solicitudes us : use.getSolicitudes()) {
                     if (us.getEmisor() != use) {
-                        
+
                         Object[] so = {us};
                         System.out.println(Arrays.toString(so));
                         model.addRow(so);
@@ -965,14 +1370,14 @@ public class minifacebook extends javax.swing.JFrame {
             //jd_inicio.add(jDesktopPane1);
             //jif_enviar.setVisible(true);
         } catch (Exception e) {
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        
+
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes", "png", "jpg", "jepg", "gif");
         fc.setFileFilter(filtro);
@@ -986,10 +1391,10 @@ public class minifacebook extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        
-        if (lista.size() - 1 > (use.getAmigos().size()) + use.getSolicitudes().size()) {
+
+        if (global.size() - 1 > (use.getAmigos().size()) + use.getSolicitudes().size()) {
             DefaultTableModel model = (DefaultTableModel) jt_buscar.getModel();
-            for (Usuario us : lista) {
+            for (Usuario us : global) {
                 if (us != use) {
                     if (use.getAmigos().size() < 1 && use.getSolicitudes().size() < 1) {
                         Object[] p = {us};
@@ -1025,28 +1430,29 @@ public class minifacebook extends javax.swing.JFrame {
             //jd_inicio.add(jDesktopPane1);
             //jif_enviar.setVisible(true);
         } catch (Exception e) {
-            
+
         }
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+
         System.out.println(buscar);
-        for (Usuario us : lista) {
+        for (Usuario us : global) {
             if (us == buscar) {
                 Solicitudes s = new Solicitudes(use, us);
                 us.getSolicitudes().add(s);
                 use.getSolicitudes().add(s);
             }
         }
-        
+
         try {
-            agregararchivo(use);
+            agregar_archivo(use);
+            agregar_admin(use);
         } catch (IOException ex) {
             Logger.getLogger(minifacebook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jt_buscar.getModel();
         int rows = jt_buscar.getModel().getRowCount();
         for (int i = 0; i < rows; i++) {
@@ -1065,37 +1471,38 @@ public class minifacebook extends javax.swing.JFrame {
         use = new Usuario();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
+
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             listasolicitud.remove(soli);
-            for (Usuario u : lista) {
+            for (Usuario u : global) {
                 if (u == soli.getEmisor()) {
                     u.getAmigos().add(soli.getReceptor());
                 } else if (u == soli.getReceptor()) {
                     u.getAmigos().add(soli.getEmisor());
                     u.setSolicitudes(listasolicitud);
-                    
+
                 }
             }
         } catch (Exception e) {
         }
-        
+
         try {
             agregar_archivo(use);
+            agregar_admin(use);
         } catch (IOException ex) {
             Logger.getLogger(minifacebook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jt_solicitudes.getModel();
         int row = jt_solicitudes.getRowCount();
         for (int i = 0; i < row; i++) {
             ((DefaultTableModel) jt_solicitudes.getModel()).removeRow(0);
         }
-        for (Usuario us : lista) {
+        for (Usuario us : global) {
             if (us == use) {
                 for (Solicitudes so : us.getSolicitudes()) {
                     Solicitudes sol[] = {so};
@@ -1104,7 +1511,7 @@ public class minifacebook extends javax.swing.JFrame {
             }
         }
         jt_solicitudes.setModel(model);
-        
+
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1121,8 +1528,6 @@ public class minifacebook extends javax.swing.JFrame {
         }
         jl_amigos.setModel(model);
         try {
-
-            //jif_enviar.add(jp_enviar);
             jif_enviar.setContentPane(jp_amigos);
             jif_enviar.pack();
             jif_enviar.setResizable(true);
@@ -1132,24 +1537,22 @@ public class minifacebook extends javax.swing.JFrame {
             jif_enviar.setVisible(true);
             jp_amigos.setVisible(true);
             jd_inicio.repaint();
-            //jd_inicio.add(jDesktopPane1);
-            //jif_enviar.setVisible(true);
         } catch (Exception e) {
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jt_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_buscarMouseClicked
-        
+
         int row = jt_buscar.getSelectedRow();        // TODO add your handling code here:
         buscar = (Usuario) jt_buscar.getValueAt(row, 0);
     }//GEN-LAST:event_jt_buscarMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         listasolicitud.remove(soli);
-        for (Usuario u : lista) {
+        for (Usuario u : global) {
             if (u == soli.getEmisor()) {
                 u.getSolicitudes().remove(soli);
             } else if (u == soli.getReceptor()) {
@@ -1158,16 +1561,17 @@ public class minifacebook extends javax.swing.JFrame {
         }
         try {
             agregar_archivo(use);
+            agregar_admin(use);
         } catch (IOException ex) {
             Logger.getLogger(minifacebook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jt_solicitudes.getModel();
         int row = jt_solicitudes.getRowCount();
         for (int i = 0; i < row; i++) {
             ((DefaultTableModel) jt_solicitudes.getModel()).removeRow(0);
         }
-        for (Usuario us : lista) {
+        for (Usuario us : global) {
             if (us == use) {
                 for (Solicitudes so : us.getSolicitudes()) {
                     Solicitudes sol[] = {so};
@@ -1188,12 +1592,12 @@ public class minifacebook extends javax.swing.JFrame {
             archivo = fc.getSelectedFile();
             Image img = Toolkit.getDefaultToolkit().createImage(archivo.getPath()).getScaledInstance(100, 100, 0);
             lb_publicar.setIcon(new ImageIcon(img));
-            
-        }  // TODO add your handling code here:
+
+        }
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-        
+
         String texto = ta_publicar.getText();
         Icon foto;
         post p = new post();
@@ -1212,7 +1616,7 @@ public class minifacebook extends javax.swing.JFrame {
         }
         ta_publicar.setText("");
         lb_foto.setIcon(null);
-        
+
 
     }//GEN-LAST:event_jButton9MouseClicked
 
@@ -1220,21 +1624,20 @@ public class minifacebook extends javax.swing.JFrame {
         Container c = new Container();
         //    c.add(jsc_muro);
         c.setLayout(new GridLayout(0, 1));
-        
+
         for (Publicacion pub : use.getMuro()) {
             post p = pub.getP();
             try {
 
-                //  jsc_muro.setViewportView(p);
                 c.add(p);
-                
+
             } catch (Exception e) {
-                
+
             }
-            
+
         }
         jsc_muro.add(c);
-        
+
         try {
 
 //            jsc_muro.getViewport().add(c);
@@ -1272,11 +1675,137 @@ public class minifacebook extends javax.swing.JFrame {
             //jd_inicio.add(jDesktopPane1);
             //jif_enviar.setVisible(true);
         } catch (Exception e) {
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        crear.setLocationRelativeTo(this);
+//        crear.setVisible(true);
+        crear.pack();
+        crear.setModal(true);
+        crear.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+
+        //      crear.setVisible(true);
+        modificar.pack();
+        modificar.setModal(true);
+        modificar.setLocationRelativeTo(this);
+        cb_modificar.setModel(new DefaultComboBoxModel(global.toArray()));
+        modificar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void pf_contra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pf_contra2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pf_contra2ActionPerformed
+
+    private void tf_nombre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombre2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nombre2ActionPerformed
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes", "png", "jpg", "jepg", "gif");
+        fc.setFileFilter(filtro);
+        File archivo;
+        int op = fc.showOpenDialog(this);
+        if (op == JFileChooser.APPROVE_OPTION) {
+            archivo = fc.getSelectedFile();
+            Image img = Toolkit.getDefaultToolkit().createImage(archivo.getPath()).getScaledInstance(100, 100, 0);
+            lb_foto2.setIcon(new ImageIcon(img));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        try {
+            String nombre = tf_nombre2.getText();
+            String nick = tf_nick2.getText();
+            String password = pf_contra2.getText();
+            String fecha = dt_fecha2.getDate().toString();
+            String pais = cb_pais2.getSelectedItem().toString();
+            Icon foto = lb_foto2.getIcon();
+            Usuario user = new Usuario(nombre, nick, password, fecha, pais, foto);
+            admin.add(user);
+            global.add(use);
+            agregararchivo(user);
+            tf_nombre2.setText("");
+            tf_nick2.setText("");
+            pf_contra2.setText("");
+            Image img = Toolkit.getDefaultToolkit().createImage("./default.jpeg").getScaledInstance(100, 100, 0);
+            lb_foto2.setIcon(new ImageIcon(img));
+            dt_fecha2.setDate(new Date());
+            JOptionPane.showMessageDialog(this, "Se creo la cuenta");
+        } catch (Exception e) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14MouseClicked
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        Usuario modifica = (Usuario) cb_modificar.getSelectedItem();
+        String nombre = tf_nombre3.getText();
+        String nick = tf_nick3.getText();
+        String fecha = dt_fecha3.getDate().toString();
+        String password = pf_contra3.getText();
+        String pais = cb_pais3.getSelectedItem().toString();
+        Icon foto = lb_foto3.getIcon();
+        Usuario nuevo = new Usuario(nombre, nick, password, fecha, pais, foto);
+        int index = global.indexOf(modifica);
+        global.set(index, nuevo);
+        int indice;
+        if (lista.contains(modifica)) {
+            indice = lista.indexOf(modifica);
+            lista.set(indice, nuevo);
+        } else if (admin.contains(modifica)) {
+            indice = admin.indexOf(modifica);
+            admin.set(indice, nuevo);
+        }
+        cb_modificar.setModel(new DefaultComboBoxModel(global.toArray()));
+        try {
+            agregar_admin(use);
+            agregar_archivo(use);
+        } catch (IOException ex) {
+            Logger.getLogger(minifacebook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void pf_contra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pf_contra3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pf_contra3ActionPerformed
+
+    private void tf_nombre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombre3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nombre3ActionPerformed
+
+    private void cb_modificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_modificarItemStateChanged
+        Usuario modifica = (Usuario) cb_modificar.getSelectedItem();
+        if (evt.getStateChange() == 1) {
+            tf_nombre3.setText(modifica.getNombre());
+            tf_nick3.setText(modifica.getNickname());
+            dt_fecha3.setDateFormatString(modifica.getFecha());
+            pf_contra3.setText(modifica.getPassword());
+            cb_pais3.setSelectedItem(modifica.getPais());
+            lb_foto3.setIcon(modifica.getFotografia());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_modificarItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1285,14 +1814,14 @@ public class minifacebook extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
@@ -1312,11 +1841,22 @@ public class minifacebook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu amdi;
     private javax.swing.JComboBox<String> cb_enviarmensaje;
+    private javax.swing.JComboBox<String> cb_modificar;
     private javax.swing.JComboBox<String> cb_pais;
+    private javax.swing.JComboBox<String> cb_pais2;
+    private javax.swing.JComboBox<String> cb_pais3;
     private javax.swing.JComboBox<String> cb_vermensajes;
+    private javax.swing.JDialog crear;
     private com.toedter.calendar.JDateChooser dt_fecha;
+    private com.toedter.calendar.JDateChooser dt_fecha2;
+    private com.toedter.calendar.JDateChooser dt_fecha3;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1325,6 +1865,7 @@ public class minifacebook extends javax.swing.JFrame {
     public javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1332,8 +1873,22 @@ public class minifacebook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1345,6 +1900,8 @@ public class minifacebook extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -1353,12 +1910,14 @@ public class minifacebook extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JDialog jd_inicio;
     private javax.swing.JInternalFrame jif_enviar;
     private javax.swing.JList<String> jl_amigos;
@@ -1374,24 +1933,35 @@ public class minifacebook extends javax.swing.JFrame {
     private javax.swing.JTable jt_solicitudes;
     private javax.swing.JTable jt_ver;
     private javax.swing.JLabel lb_foto;
+    private javax.swing.JLabel lb_foto2;
+    private javax.swing.JLabel lb_foto3;
     private javax.swing.JLabel lb_publicar;
+    private javax.swing.JDialog modificar;
     private javax.swing.JPasswordField pf_contra;
+    private javax.swing.JPasswordField pf_contra2;
+    private javax.swing.JPasswordField pf_contra3;
     private javax.swing.JPasswordField pf_login;
     private javax.swing.JTextArea ta_mensajeenviar;
     private javax.swing.JTextArea ta_publicar;
     private javax.swing.JTextField tf_nick;
+    private javax.swing.JTextField tf_nick2;
+    private javax.swing.JTextField tf_nick3;
     private javax.swing.JTextField tf_nombre;
+    private javax.swing.JTextField tf_nombre2;
+    private javax.swing.JTextField tf_nombre3;
     private javax.swing.JTextField tf_usuario;
     private javax.swing.JMenuItem ver;
     // End of variables declaration//GEN-END:variables
     ArrayList<Usuario> lista = new ArrayList();
+    ArrayList<Usuario> admin = new ArrayList();
+    ArrayList<Usuario> global = new ArrayList();
     Usuario use = new Usuario();
     ArrayList<Usuario> listabuscar = new ArrayList();
     ArrayList<Solicitudes> listasolicitud = new ArrayList();
     int index = 0;
     Solicitudes soli;
     Usuario buscar;
-    
+
     public void agregararchivo(Usuario u) throws IOException {
         /*FileWriter fw;
         BufferedWriter bw;
@@ -1406,44 +1976,46 @@ public class minifacebook extends javax.swing.JFrame {
             for (Usuario us : lista) {
                 bw.writeObject(us);
             }
-            
+
             try {
                 bw.close();
                 fw.close();
             } catch (IOException e) {
             }
-            
+
         } catch (IOException e) {
         }
-        
+
     }
-    
+
     public void cargarrarchivo() {
         File f = new File("./usuarios/usuario.txt");
         try {
-            lista = new ArrayList();
+            //lista = new ArrayList();
+            // global = new ArrayList();
             Usuario temp = null;
             if (f.exists()) {
-                
+
                 FileInputStream entrada = new FileInputStream(f);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
-                
+
                 try {
-                    
+
                     while ((temp = (Usuario) objeto.readObject()) != null) {
                         lista.add(temp);
+                        global.add(temp);
                     }
                 } catch (EOFException e) {
                 }
                 objeto.close();
                 entrada.close();
             }
-            
+
         } catch (IOException | ClassNotFoundException e) {
-            
+
         }
     }
-    
+
     public void agregar_archivo(Usuario u) throws IOException {
         /*FileWriter fw;
         BufferedWriter bw;
@@ -1464,17 +2036,93 @@ public class minifacebook extends javax.swing.JFrame {
                 fw.close();
             } catch (IOException e) {
             }
-            
+
         } catch (IOException e) {
         }
-        
+
     }
-    
-    public Usuario getUse() {
-        return use;
+
+    public void agregaradmin(Usuario u) throws IOException {
+        /*FileWriter fw;
+        BufferedWriter bw;
+         */
+        File f = new File("./usuarios/" + u.getNickname());
+        f.mkdir();
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream("./usuarios/admin.face", false);
+            bw = new ObjectOutputStream(fw);
+            for (Usuario us : admin) {
+                bw.writeObject(us);
+            }
+
+            try {
+                bw.close();
+                fw.close();
+            } catch (IOException e) {
+            }
+
+        } catch (IOException e) {
+        }
+
     }
-    
-    public void setUse(Usuario use) {
-        this.use = use;
+
+    public void cargarradmin() {
+        File f = new File("./usuarios/admin.face");
+        try {
+            //lista = new ArrayList();
+            //global = new ArrayList();
+            boolean tiene = false;
+            Usuario temp = null;
+            if (f.exists()) {
+
+                FileInputStream entrada = new FileInputStream(f);
+                ObjectInputStream objeto = new ObjectInputStream(entrada);
+
+                try {
+
+                    while ((temp = (Usuario) objeto.readObject()) != null) {
+                        admin.add(temp);
+                        global.add(temp);
+                        tiene = true;
+                    }
+                } catch (EOFException e) {
+                }
+                objeto.close();
+                entrada.close();
+            }
+            if (!tiene) {
+                Usuario admn = new Usuario("admin", "admin", "1", new Date().toString(), "Honduras", lb_foto.getIcon());
+                global.add(admn);
+                admin.add(admn);
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+
+        }
+    }
+
+    public void agregar_admin(Usuario u) throws IOException {
+        File f = new File("./usuarios/" + u.getNickname());
+        f.mkdir();
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream("./usuarios/admin.face", true);
+            bw = new ObjectOutputStream(fw);
+            for (Usuario us : admin) {
+                bw.writeObject(us);
+            }
+            bw.flush();
+            try {
+                bw.close();
+                fw.close();
+            } catch (IOException e) {
+            }
+
+        } catch (IOException e) {
+        }
+
     }
 }
